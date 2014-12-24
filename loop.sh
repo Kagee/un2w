@@ -1,3 +1,5 @@
+#! /bin/bash
 while read line; do
-    echo $line;
-done < opengts_data1.log;
+    echo -n "$line" > /dev/udp/127.0.0.1/11109;
+    sleep 1;
+done < $1;
