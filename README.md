@@ -1,5 +1,7 @@
 Simple code for reciving NMEA (opengts) data from https://play.google.com/store/apps/details?id=com.mendhak.gpslogger and other and then displaying it as a static webpage.
 
+Written for python 3, might work in python 2.
+Install external python requirements with pip3 install -r requirements.txt
 
 Sources: 
 / is a invalid character in account name and device ID
