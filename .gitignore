@@ -45,7 +45,7 @@ coverage.xml
 *.pot
 
 # Django stuff:
-*.log
+# *.log # way to generic
 
 # Sphinx documentation
 docs/_build/
