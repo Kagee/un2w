@@ -29,18 +29,20 @@ while run:
         ls = LineString([(float("%.6f" % msg.latitude), float("%.6f" % msg.longitude))])
         print (ls)
         sys.stdout.flush()
-    except UnicodeError:
-        print("Discarding, failed to decode as UTF-8: ", data, file=sys.stderr)
+    except UnicodeError as ue:
+        print("Discarding, failed to decode as UTF-8: %s (%s)" % (data, ue), file=sys.stderr)
         continue
     except ValueError as ve:
-        print (ve)
+        print (ve, file=sys.stderr)
         continue
     except pynmea2.nmea.ParseError:
-        print("Discarding, failed to parse NMEA: ", s
-        print("KeyboardInterrupt received, cleaning …")
+        print("Discarding, failed to parse NMEA: ", s, file=sys.stderr)
+        continue
+    except KeyboardInterrupt:
+        print("KeyboardInterrupt received, cleaning …", file=sys.stderr)
         #sock.shutdown(socket.SHUT_WR) # (maybe not close socket?)
         run = False
         # close file handles ?
     except:
-        print ("Unexpected error:", sys.exc_info()[0])
+        print ("Unexpected error:", sys.exc_info()[0], file=sys.stderr)
         raise
